@@ -13,6 +13,7 @@ import ChecktoutPage from './pages/checkout/checkout.component';
 import Header from "./components/header/header.component";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from './redux/user/user.selector';
+import { selectCollectionsForPreview } from './redux/shop/shop.selector';
 
 import "./App.css";
 
@@ -32,9 +33,10 @@ class App extends React.Component {
             ...snapShot.data(),
           });
         });
-      } else {
-        setCurrentUser(userAuth);
       }
+
+      setCurrentUser(userAuth);
+      // addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({ title, items})));
     });
   }
 
@@ -42,7 +44,7 @@ class App extends React.Component {
     this.unsubscribeFromAuth();
   }
 
-  render() {
+  render() { 
     return (
       <div>
         <Header />
