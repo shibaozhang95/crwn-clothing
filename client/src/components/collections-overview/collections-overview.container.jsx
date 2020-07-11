@@ -1,19 +1,34 @@
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import React from 'react';
+import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
 
-import { selectIsColletionFetching } from '../../redux/shop/shop.selector';
-
-import WithSpinner from '../../components/with-spinner/with-spinner.component';
 import CollectionsOverview from './collections-overview.component';
+import Spinner from '../spinner/spinner.component';
 
-const mapStateToProps = createStructuredSelector({
-  isLoading: selectIsColletionFetching
-});
+const GET_COLLECTIONS = gql`
+  {
+    collections {
+      id
+      title
+      items {
+        id
+        name
+        price
+        imageUrl
+      }
+    }
+  }
+`;
 
-const CollectionsOverviewContainer = compose(
-  connect(mapStateToProps),
-  WithSpinner
-)(CollectionsOverview);
+const CollectionsOverviewContainers = () => (
+  <Query query={GET_COLLECTIONS}>
+  {
+    ({ loading, error, data }) => {
+      if (loading) return <Spinner />;
+      return <CollectionsOverview collections={data.collections}/>
+    }
+  }
+  </Query>
+);
 
-export default CollectionsOverviewContainer;
+export default CollectionsOverviewContainers;
