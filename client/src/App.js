@@ -1,3 +1,4 @@
+import * as serviceWorker from './serviceWorker';
 import React, { useEffect, lazy, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -22,7 +23,7 @@ const ShopPage = lazy(() => import('./pages/shop/shop.component'));
 const SignInAndSignUpPage = lazy(() => import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component'));
 const ChecktoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 
-import * as serviceWorker from './serviceWorker';
+
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
