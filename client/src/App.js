@@ -22,6 +22,8 @@ const ShopPage = lazy(() => import('./pages/shop/shop.component'));
 const SignInAndSignUpPage = lazy(() => import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component'));
 const ChecktoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 
+import * as serviceWorker from './serviceWorker';
+
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession();
@@ -55,7 +57,6 @@ const App = ({ checkUserSession, currentUser }) => {
       </Switch>
     </div>
   );
-  
 }
 
 const mapStateToProps = createStructuredSelector({
@@ -67,3 +68,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+serviceWorker.register();
