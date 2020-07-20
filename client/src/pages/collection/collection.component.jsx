@@ -1,4 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { selectCollection } from '../../redux/shop/shop.selector';
+
 
 import  CollectionItem from '../../components/collection-item/collection-item.component';
 
@@ -18,4 +23,11 @@ const CollectionPage = ({ collection }) => {
   )
 };
 
-export default CollectionPage;
+const mapStateToProps = (state, ownProps) => ({
+  collection: selectCollection(ownProps.match.params.collectionId)(state)
+})
+// const mapStateToProps = (state, ownProps) => createStructuredSelector({
+//   collection: () => selectCollection(ownProps.match.params.collectionId)(state)
+// })
+
+export default connect(mapStateToProps)(CollectionPage);

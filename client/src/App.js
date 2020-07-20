@@ -9,7 +9,7 @@ import { createStructuredSelector } from 'reselect';
 // import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 // import ChecktoutPage from './pages/checkout/checkout.component'; 
 
-import { default as Header } from "./components/header/header.container";
+import Header from "./components/header/header.component";
 import { selectCurrentUser } from './redux/user/user.selector';
 import { checkUserSession } from './redux/user/user.actions';
 

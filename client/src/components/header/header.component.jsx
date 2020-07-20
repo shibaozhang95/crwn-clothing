@@ -2,16 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
 import { ReactComponent as Logo } from '../../assets/crwn.svg';
-import { default as CartIcon } from '../cart-icon/cart-icon.container';
-import { default as CartDropdown } from '../cart-dropdown/cart-dropdown.container';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import { signOutStart } from '../../redux/user/user.actions';
 
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
 
-const Header = ({ currentUser, hidden, signOutStart }) => (
+const Header = ({ currentUser, cartHidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer to="/">
       <Logo className='logo' />
@@ -32,14 +33,15 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
       <CartIcon />
     </OptionsContainer>
     {
-      hidden ? null :
+      cartHidden ? null :
       (<CartDropdown />)
     }
   </HeaderContainer>
 );
 
 const mapStateToProps = createStructuredSelector ({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  cartHidden: selectCartHidden
 });
 
 const mapDispatchToProps = dispatch => ({
