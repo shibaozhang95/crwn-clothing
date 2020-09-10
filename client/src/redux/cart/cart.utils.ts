@@ -1,6 +1,7 @@
-import { Item } from './cart.types';
+import { CartItem } from './cart.types';
+import { Item } from '../../models/item';
 
-export const addItemToCart = (cartItems: Item[], cartItemToAdd: Item) => {
+export const addItemToCart = (cartItems: CartItem[], cartItemToAdd: Item) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToAdd.id
   );
@@ -16,7 +17,7 @@ export const addItemToCart = (cartItems: Item[], cartItemToAdd: Item) => {
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }]
 }
 
-export const removeItemFromCart = (cartItems: Item[], cartItemToRemove: Item) => {
+export const removeItemFromCart = (cartItems: CartItem[], cartItemToRemove: Item) => {
   const existingCartItem = cartItems.find(cartItem =>
     cartItem.id === cartItemToRemove.id
   )

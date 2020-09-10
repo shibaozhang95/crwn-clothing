@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
-import memoize from  'lodash.memoize';
+import * as lodash from  'lodash';
+import { RootState } from '../root-reducer';
 
-const selectShop = state => state.shop;
+const selectShop = (state: RootState) => state.shop;
 
 export const selectCollections = createSelector(
   [selectShop],
@@ -13,7 +14,7 @@ export const selectCollectionsForPreview = createSelector(
   collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 )
 
-export const selectCollection = memoize((collectionUrlParam) =>
+export const selectCollection = lodash.memoize((collectionUrlParam: string) =>
   createSelector(
     [selectCollections],
     collections => collections ? collections[collectionUrlParam] : null
