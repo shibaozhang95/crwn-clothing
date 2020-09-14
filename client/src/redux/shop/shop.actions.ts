@@ -4,7 +4,7 @@ import {
   FETCH_COLLECTIONS_SUCCESS,
   FetchCollectionSuccessAction,
   FetchCollectionsStartAction,
-  fetchCollectionsFailureAction,
+  FetchCollectionsFailureAction,
   CollectionsMap,
 } from "./shop.types";
 
@@ -31,7 +31,7 @@ export const fetchCollectionsSuccess = (
 
 export const fetchCollectionsFailure = (
   errorMessage: string
-): fetchCollectionsFailureAction => ({
+): FetchCollectionsFailureAction => ({
   type: FETCH_COLLECTIONS_FAILURE,
   payload: errorMessage,
 });

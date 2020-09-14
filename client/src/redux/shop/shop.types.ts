@@ -19,7 +19,7 @@ export interface FetchCollectionSuccessAction {
   payload: CollectionsMap; // TOOD
 }
 
-export interface fetchCollectionsFailureAction {
+export interface FetchCollectionsFailureAction {
   type: typeof FETCH_COLLECTIONS_FAILURE;
   payload: string;
 }
@@ -27,7 +27,7 @@ export interface fetchCollectionsFailureAction {
 export type ShopActionTypes =
   | FetchCollectionsStartAction
   | FetchCollectionSuccessAction
-  | fetchCollectionsFailureAction;
+  | FetchCollectionsFailureAction;
 
 
 export interface CollectionForPreview extends Collection {
