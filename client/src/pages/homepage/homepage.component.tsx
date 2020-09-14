@@ -4,12 +4,10 @@ import Directory from '../../components/directory/directory.component';
 
 import './homepage.styles.scss';
 
-import { HomePageContainer } from './homepage.styles';
-
 const HomePage = () => {
   // throw Error
   return (
-    <HomePageContainer>
+    <div>
       <Profiler id="Directory" onRender={(id, phase, actualDuration) => {
         console.log({
           id,
@@ -19,8 +17,8 @@ const HomePage = () => {
       }}>
         <Directory />
       </Profiler>
-    </HomePageContainer>
-  )
+    </div>
+  ) 
 }
 
 export default HomePage;

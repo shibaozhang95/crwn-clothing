@@ -15,26 +15,26 @@ export const REMOVE_ITEM = "REMOVE_ITEM";
 export const CLEAR_ITEM_FORM_CART = "CLEAR_ITEM_FORM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 
-interface ToggleCartHiddenAction {
+export interface ToggleCartHiddenAction {
   type: typeof TOGGLE_CART_HIDDEN
 }
 
-interface AddItemAction {
+export interface AddItemAction {
   type: typeof ADD_ITEM
   payload: CartItem
 }
 
-interface RemoveItemAction {
+export interface RemoveItemAction {
   type: typeof REMOVE_ITEM
   payload: CartItem
 }
 
-interface ClearItemFromCartAction {
+export interface ClearItemFromCartAction {
   type: typeof CLEAR_ITEM_FORM_CART
   payload: CartItem
 }
 
-interface ClearCartAction {
+export interface ClearCartAction {
   type: typeof CLEAR_CART
 }
 
