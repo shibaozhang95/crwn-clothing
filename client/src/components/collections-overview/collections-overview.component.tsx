@@ -6,10 +6,19 @@ import { selectCollectionsForPreview, selectIsCollectionsLoaded } from '../../re
 import { createStructuredSelector } from 'reselect';
 import CollectionPreview from '../collection-preview/collection-preview.component';
 import Spinner from '../spinner/spinner.component';
+import { Collection } from '../../models/collection';
+import { RootState } from '../../redux/root-reducer';
 
-const CollectionOverview = ({ isLoading, collections }) => {
-  console.log(isLoading);
-  console.log(collections);
+type StateProps = {
+  isLoading: boolean
+  collections: Collection[]
+}
+
+type OwnProps = {}
+
+type Props = OwnProps & StateProps
+
+const CollectionOverview = ({ isLoading, collections }: Props) => {
   return (
     isLoading
     ? (<Spinner />) 
@@ -23,7 +32,7 @@ const CollectionOverview = ({ isLoading, collections }) => {
   )
 };
 
-const mapStateToProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   collections: selectCollectionsForPreview,
   isLoading: () => !selectIsCollectionsLoaded
 })

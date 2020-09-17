@@ -6,8 +6,16 @@ import { selectIsCollectionsLoaded } from '../../redux/shop/shop.selector';
 
 import CollectionPage from './collection.component';
 import Spinner from '../../components/spinner/spinner.component';
+import { RootState } from '../../redux/root-reducer';
+import { RouteComponentProps } from 'react-router-dom';
 
-const CollectionPageContainer = ({ isLoading , ...otherProps }) => {
+type StateProps = {
+  isLoading: boolean
+}
+
+type Props = StateProps
+
+const CollectionPageContainer = ({ isLoading , ...otherProps }: StateProps & RouteComponentProps<{collectionId: string}>) => {
   return (
     isLoading 
     ? <Spinner />
@@ -15,7 +23,7 @@ const CollectionPageContainer = ({ isLoading , ...otherProps }) => {
   )
 }
 
-const mapStateToProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   isLoading: state => !selectIsCollectionsLoaded(state)
 });
 

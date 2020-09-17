@@ -1,17 +1,21 @@
 import React from 'react';
+import { Item } from '../../models/item';
 
-// import { default as CollectionItem } from '../collection-item/collection-item.container';
 import CollectionItem from '../collection-item/collection-item.component';
 
 import './collection-preview.styles.scss';
 
-const CollectionPreview = ({ title, items }) => (
+type Props = {
+  title: string
+  items: Item[]
+}
+const CollectionPreview = ({ title, items }: Props) => (
   <div className='collection-preview'>
     <h1 className='title'>{title.toUpperCase()}</h1>
     <div className='preview'>
       {
         items
-          .filter((item, idx) => idx < 4)
+          .filter((_item, idx) => idx < 4)
           .map(item => (
             <CollectionItem key={item.id} item={item} />
           ))

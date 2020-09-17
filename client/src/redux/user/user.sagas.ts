@@ -4,6 +4,7 @@ import {
   CHECK_USER_SESSION,
   EMAIL_SIGN_IN_START,
   GOOGLE_SIGN_IN_START,
+  SignUpStartAction,
   SIGN_OUT_START,
   SIGN_UP_START,
   SIGN_UP_SUCCESS
@@ -76,7 +77,7 @@ export function* signOut() {
   }
 }
 
-export function* signUp({ payload: { email, password, displayName }}: any) {
+export function* signUp({ payload: { email, password, displayName }}: SignUpStartAction) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     yield put(signUpSuccess({ user, additionalData: { displayName } }));
@@ -85,6 +86,7 @@ export function* signUp({ payload: { email, password, displayName }}: any) {
   }
 }
 
+// TODO
 export function* signInAfterSignUp({ payload: { user, additionalData } }: any) {
   yield getSnapshotFromUserAuth(user, additionalData);
 }

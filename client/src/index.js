@@ -13,7 +13,7 @@ import { ApolloClient } from 'apollo-boost';
 import { store, persistor } from './redux/store';
 import './index.css';
 
-import { resolvers, typeDefs } from './graphql/resolvers';
+// import { resolvers, typeDefs } from './graphql/resolvers';
 
 const httpLink = createHttpLink({
   uri: 'https://crwn-clothing.com'
@@ -21,30 +21,30 @@ const httpLink = createHttpLink({
 
 const cache = new InMemoryCache();
 
-const client = new ApolloClient({
-  link: httpLink,
-  cache,
-  typeDefs,
-  resolvers
-});
+// const client = new ApolloClient({
+//   link: httpLink,
+//   cache,
+//   typeDefs,
+//   resolvers
+// });
 
-client.writeData({
-  data: {
-    cartHidden: true,
-    cartItems: [],
-    itemCount: 0
-  }
-})
+// client.writeData({
+//   data: {
+//     cartHidden: true,
+//     cartItems: [],
+//     itemCount: 0
+//   }
+// })
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  // <ApolloProvider client={client}>
     <Provider store={store}>
       <BrowserRouter>
         <PersistGate persistor={persistor}>
           <App />
         </PersistGate>
       </BrowserRouter>
-    </Provider>
-  </ApolloProvider>,
+    </Provider>,
+  // </ApolloProvider>,
   document.getElementById('root')
 );

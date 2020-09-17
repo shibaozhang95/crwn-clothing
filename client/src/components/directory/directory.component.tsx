@@ -10,13 +10,13 @@ import MenuItem from '../menu-item/menu-item.component';
 import { Section } from '../../redux/directory/directory.types';
 import { RootState } from '../../redux/root-reducer';
 
-type DesiredSelection = {
+type StateProps = {
   sections: Section[]
 }
 
 type OwnProps = {}
 
-type Props = OwnProps & DesiredSelection;
+type Props = OwnProps & StateProps;
 
 const Directory = ({ sections }: Props) => (
   <div className='directory-menu'>
@@ -28,7 +28,7 @@ const Directory = ({ sections }: Props) => (
   </div>
 )
 
-const mapStateToProps = createStructuredSelector<RootState, DesiredSelection>({
+const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   sections: selectDirectorySections
 })
 

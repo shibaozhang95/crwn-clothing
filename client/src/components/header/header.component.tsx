@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Dispatch } from 'redux';
 
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
@@ -11,8 +12,21 @@ import { selectCurrentUser } from '../../redux/user/user.selector';
 import { signOutStart } from '../../redux/user/user.actions';
 
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
+import { User } from '../../redux/user/user.types';
+import { RootState } from '../../redux/root-reducer';
 
-const Header = ({ currentUser, cartHidden, signOutStart }) => (
+type StateProps = {
+  currentUser: User | null
+  cartHidden: boolean
+}
+
+type DispatchProps = {
+  signOutStart: () => void
+}
+
+type Props = StateProps & DispatchProps
+
+const Header = ({ currentUser, cartHidden, signOutStart }: Props) => (
   <HeaderContainer>
     <LogoContainer to="/">
       <Logo className='logo' />
@@ -39,12 +53,12 @@ const Header = ({ currentUser, cartHidden, signOutStart }) => (
   </HeaderContainer>
 );
 
-const mapStateToProps = createStructuredSelector ({
+const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   currentUser: selectCurrentUser,
   cartHidden: selectCartHidden
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   signOutStart: () => dispatch(signOutStart())
 });
 

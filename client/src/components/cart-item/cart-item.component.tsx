@@ -1,8 +1,14 @@
 import React from 'react';
 
+import { CartItem as ICartItem } from '../../redux/cart/cart.types';
+
 import './cart-item.styles.scss';
 
-const CartItem = ({ item: { imageUrl, price, name, quantity }}) => (
+type Props = {
+  item: ICartItem
+}
+
+const CartItem = ({ item: { imageUrl, price, name, quantity }}: Props) => (
   <div className='cart-item'>
     <img src={imageUrl} alt='item' />
     <div className='item-details'>

@@ -1,8 +1,8 @@
-import React, { Dispatch } from "react";
+import React from "react";
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
+import { Dispatch, compose } from 'redux'
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 import CustomButton from "../custom-button/custom-button.component";
@@ -13,7 +13,6 @@ import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import "./cart-dropdown.styles.scss";
 import { CartItem as ICartItem, CartActionTypes, ToggleCartHiddenAction } from "../../redux/cart/cart.types";
 import { RootState } from "../../redux/root-reducer";
-import { compose } from "redux";
 
 type StateProps = {
   cartItems: ICartItem[]
@@ -61,7 +60,7 @@ const mapDispatchToPorps = (dispatch: Dispatch<CartActionTypes>) => ({
 
 // export default withRouter(Connected)
 
-export default compose(
+export default compose<React.FunctionComponent<OwnProps>>(
   withRouter,
   connect(mapStateToProps, mapDispatchToPorps)
 )(CartDropDown)

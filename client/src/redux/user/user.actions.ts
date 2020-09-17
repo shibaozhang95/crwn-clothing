@@ -23,7 +23,7 @@ import {
   SignUpStartAction,
   SignUpSuccessAction,
   SignUpFailureAction,
-  User, EmailAndPassword, UserError
+  User, EmailAndPassword, UserError, SignUpUserCredentials
 } from './user.types';
 
 export const setCurrentUser = (user: User): SetCurrentUserAction => ({
@@ -67,7 +67,7 @@ export const signOutFailure = (error: UserError): SignOutFailureAction => ({
   payload: error
 });
 
-export const signUpStart = (userCredentials: any): SignUpStartAction => ({
+export const signUpStart = (userCredentials: SignUpUserCredentials): SignUpStartAction => ({
   type: SIGN_UP_START,
   payload: userCredentials
 });

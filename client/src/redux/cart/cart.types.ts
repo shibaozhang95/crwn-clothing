@@ -21,17 +21,17 @@ export interface ToggleCartHiddenAction {
 
 export interface AddItemAction {
   type: typeof ADD_ITEM
-  payload: CartItem
+  payload: Item
 }
 
 export interface RemoveItemAction {
   type: typeof REMOVE_ITEM
-  payload: CartItem
+  payload: Item
 }
 
 export interface ClearItemFromCartAction {
   type: typeof CLEAR_ITEM_FORM_CART
-  payload: CartItem
+  payload: Item
 }
 
 export interface ClearCartAction {

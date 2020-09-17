@@ -10,6 +10,12 @@ export interface User {
   createAt: Date
 }
 
+export interface SignUpUserCredentials {
+  displayName: string
+  email: string
+  password: string 
+}
+
 export interface UserError {
   a: any 
   code: string 
@@ -77,9 +83,10 @@ export interface SignOutFailureAction {
 
 export interface SignUpStartAction {
   type: typeof SIGN_UP_START;
-  payload: any;
+  payload: SignUpUserCredentials;
 }
 
+// TODO
 export interface SignUpSuccessAction {
   type: typeof SIGN_UP_SUCCESS;
   payload: any;

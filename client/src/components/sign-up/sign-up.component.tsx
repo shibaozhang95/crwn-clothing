@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
@@ -7,8 +8,15 @@ import CustomButton from '../custom-button/custom-button.component';
 import { signUpStart } from '../../redux/user/user.actions';
 
 import './sign-up.styles.scss';
+import { SignUpUserCredentials } from '../../redux/user/user.types';
 
-const SignUp = ({ signUpStart }) => {
+type DispatchProps = {
+  signUpStart: (userCredential: SignUpUserCredentials) => void
+}
+
+type Props = DispatchProps
+
+const SignUp = ({ signUpStart }: Props) => {
   const [userCredentials, setuserCredentials] = useState({
     displayName: '',
     email: '',
@@ -18,8 +26,9 @@ const SignUp = ({ signUpStart }) => {
 
   const { displayName, email, password, confirmPassword } = userCredentials;
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+
     if (password !== confirmPassword) {
       alert("passwords don't mathc");
       return;
@@ -28,7 +37,7 @@ const SignUp = ({ signUpStart }) => {
     signUpStart({ displayName, email, password })
   }
 
-  const handleChange = event => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setuserCredentials({ 
@@ -46,28 +55,28 @@ const SignUp = ({ signUpStart }) => {
           type='text'
           name='displayName'
           value={displayName}
-          onChange={handleChange}
+          handleChange={handleChange}
           label='Display Name'
         />
         <FormInput
           type='email'
           name='email'
           value={email}
-          onChange={handleChange}
+          handleChange={handleChange}
           label='Email'
         />
         <FormInput
           type='password'
           name='password'
           value={password}
-          onChange={handleChange}
+          handleChange={handleChange}
           label='Password'
         />
         <FormInput
           type='password'
           name='confirmPassword'
           value={confirmPassword}
-          onChange={handleChange}
+          handleChange={handleChange}
           label='confirmPassword'
         />
 
@@ -80,7 +89,7 @@ const SignUp = ({ signUpStart }) => {
   
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
 })
 

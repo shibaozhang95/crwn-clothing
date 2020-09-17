@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 
 import './form-input.styles.scss';
 
-const FormInput = ({ handleChange, label, ...otherProps }) => (
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  name: string 
+  label: string 
+  value: string
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const FormInput = ({ handleChange, label, ...otherProps }: Props) => (
   <div className="group">
     <input
       className='form-input'
