@@ -1,17 +1,29 @@
-import React, { ButtonHTMLAttributes, ReactNode } from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from "react";
 
-import { CustomButtonContainer } from './custom-button.styles';
+import "./custom-button.styles.scss";
 
 interface OwnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  inverted?: boolean
-  isGoogleSignIn?: boolean
-  children: ReactNode
+  inverted?: boolean;
+  isGoogleSignIn?: boolean;
+  children: ReactNode;
 }
 
-const CustomButton = ({ children, ...props }: OwnProps) => (
-  <CustomButtonContainer {...props} >
-    {children}
-  </CustomButtonContainer>
-)
+const CustomButton = ({
+  children,
+  isGoogleSignIn,
+  inverted,
+  ...otherPops
+}: OwnProps) => {
+  const stylesName = isGoogleSignIn
+    ? "google-sign-styles"
+    : inverted
+    ? "inverted-button-styles"
+    : "button-styles";
+  return (
+    <button {...otherPops} className={"btn " + stylesName}>
+      {children}
+    </button>
+  );
+};
 
 export default CustomButton;
