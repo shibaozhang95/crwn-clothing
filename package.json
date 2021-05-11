@@ -22,7 +22,7 @@
     "express": "^4.16.4",
     "express-sslify": "^1.2.0",
     "graphql": "^15.3.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "react-apollo": "^3.1.5",
     "stripe": "6.28.0"
   },
